@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go.2-🤑🫰</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">Go.2-🤑🫰</h1>
+            <div class="header-icons">
+                <span class="balance-display" id="balanceDisplay">Balance: Rs 0</span>
+                <button class="user-btn" onclick="toggleAccountMenu()">👤</button>
+            </div>
+        </div>
+        <!-- Account Menu Dropdown -->
+        <div class="account-menu" id="accountMenu">
+            <button onclick="showPage('account')">My Account</button>
+            <button onclick="handleLogout()">Logout</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container" id="mainContainer">
+        <!-- Dashboard Page -->
+        <div id="page-home" class="page active">
+            <div class="dashboard-welcome">
+                <h2>Welcome to Go.2-🤑🫰</h2>
+                <p id="welcomeUser"></p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Go.2-🤑🫰 01</h3>
+                        <span class="product-days">100 Days</span>
+                    </div>
+                    <img src="/placeholder.svg?height=100&width=100" alt="Go.2-🤑🫰 01" class="product-image">
+                    <div class="product-info">
+                        <p><strong>Price:</strong> Rs 700</p>
+                        <p><strong>Daily Income:</strong> Rs 116.64</p>
+                    </div>
+                    <button class="invest-btn" onclick="openInvestModal('Go.2-🤑🫰 01', 700, 116.64)">Invest Now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Go.2-🤑🫰 02</h3>
+                        <span class="product-days">100 Days</span>
+                    </div>
+                    <img src="/placeholder.svg?height=100&width=100" alt="Go.2-🤑🫰 02" class="product-image">
+                    <div class="product-info">
+                        <p><strong>Price:</strong> Rs 2000</p>
+                        <p><strong>Daily Income:</strong> Rs 400.08</p>
+                    </div>
+                    <button class="invest-btn" onclick="openInvestModal('Go.2-🤑🫰 02', 2000, 400.08)">Invest Now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Go.2-🤑🫰 03</h3>
+                        <span class="product-days">100 Days</span>
+                    </div>
+                    <img src="/placeholder.svg?height=100&width=100" alt="Go.2-🤑🫰 03" class="product-image">
+                    <div class="product-info">
+                        <p><strong>Price:</strong> Rs 5000</p>
+                        <p><strong>Daily Income:</strong> Rs 1041.6</p>
+                    </div>
+                    <button class="invest-btn" onclick="openInvestModal('Go.2-🤑🫰 03', 5000, 1041.6)">Invest Now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Go.2-🤑🫰 04</h3>
+                        <span class="product-days">100 Days</span>
+                    </div>
+                    <img src="/placeholder.svg?height=100&width=100" alt="Go.2-🤑🫰 04" class="product-image">
+                    <div class="product-info">
+                        <p><strong>Price:</strong> Rs 10000</p>
+                        <p><strong>Daily Income:</strong> Rs 2173.92</p>
+                    </div>
+                    <button class="invest-btn" onclick="openInvestModal('Go.2-🤑🫰 04', 10000, 2173.92)">Invest Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings Page -->
+        <div id="page-earnings" class="page">
+            <h2>My Earnings</h2>
+            <div class="earnings-summary">
+                <div class="earning-card">
+                    <h3>Today's Earnings</h3>
+                    <p class="earning-amount" id="todayEarnings">Rs 0</p>
+                </div>
+                <div class="earning-card">
+                    <h3>Total Deposits</h3>
+                    <p class="earning-amount" id="totalDeposits">Rs 0</p>
+                </div>
+                <div class="earning-card">
+                    <h3>Total Income</h3>
+                    <p class="earning-amount" id="totalIncome">Rs 0</p>
+                </div>
+            </div>
+
+            <div class="earnings-list">
+                <h3>Earning History</h3>
+                <div id="earningsHistory" class="history-list">
+                    <p class="empty-message">No earnings yet. Start investing!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Tasks Page -->
+        <div id="page-task" class="page">
+            <h2>Daily Tasks</h2>
+            <div class="tasks-container" id="tasksContainer">
+                <div class="task-card">
+                    <div class="task-info">
+                        <h3>Invite 3 Friends</h3>
+                        <p>Number of investors under the first level 3</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="task1Progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="task-btn" onclick="completeTask(1, 'invite-3')">Unlock</button>
+                </div>
+
+                <div class="task-card">
+                    <div class="task-info">
+                        <h3>Invite 12 Friends</h3>
+                        <p>Number of investors under the first level 12</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="task2Progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="task-btn" onclick="completeTask(2, 'invite-12')">Unlock</button>
+                </div>
+
+                <div class="task-card">
+                    <div class="task-info">
+                        <h3>Invite 30 Friends</h3>
+                        <p>Number of investors under the first level 30</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="task3Progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="task-btn" onclick="completeTask(3, 'invite-30')">Unlock</button>
+                </div>
+
+                <div class="task-card">
+                    <div class="task-info">
+                        <h3>Daily Login</h3>
+                        <p>Login everyday to earn bonus rewards</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="task4Progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <button class="task-btn completed" onclick="alert('Already completed today!')">Completed</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share/Referral Page -->
+        <div id="page-share" class="page">
+            <h2>Share & Earn</h2>
+            <div class="referral-container">
+                <div class="qr-section">
+                    <h3>My QR Code</h3>
+                    <div class="qr-code" id="qrCode">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" fill="white"/>
+                            <g fill="black">
+                                <rect x="10" y="10" width="30" height="30"/>
+                                <rect x="60" y="10" width="30" height="30"/>
+                                <rect x="10" y="60" width="30" height="30"/>
+                                <rect x="20" y="20" width="10" height="10" fill="white"/>
+                                <rect x="70" y="20" width="10" height="10" fill="white"/>
+                                <rect x="20" y="70" width="10" height="10" fill="white"/>
+                                <rect x="45" y="45" width="10" height="10"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <button class="share-btn" onclick="downloadQR()">Download QR Code</button>
+                </div>
+
+                <div class="referral-code-section">
+                    <h3>My Invitation Code</h3>
+                    <div class="referral-input">
+                        <input type="text" id="referralCode" readonly value="">
+                        <button class="copy-btn" onclick="copyReferralCode()">Copy</button>
+                    </div>
+
+                    <p class="referral-link">Invitation Link:</p>
+                    <div class="referral-input">
+                        <input type="text" id="referralLink" readonly value="">
+                        <button class="copy-btn" onclick="copyReferralLink()">Copy</button>
+                    </div>
+
+                    <div class="reward-rules">
+                        <h4>Team Investment Reward Rules</h4>
+                        <ul>
+                            <li>Level 1 subscribers receive a 25% cash return reward on their investments</li>
+                            <li>Level 2 subscribers receive a 3% cash return reward on their investments</li>
+                            <li>Level 3 subscribers receive a 2% cash return reward on their investments</li>
+                        </ul>
+                        <p class="reward-note">Cash returns will be automatically added to your balance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Withdraw Page -->
+        <div id="page-withdraw" class="page">
+            <h2>Withdraw Funds</h2>
+            <div class="withdraw-container">
+                <div class="balance-info">
+                    <p>Available Balance: <strong id="withdrawBalance">Rs 0</strong></p>
+                </div>
+
+                <form class="withdraw-form" onsubmit="handleWithdraw(event)">
+                    <div class="form-group">
+                        <label for="withdrawAmount">Amount to Withdraw (Rs)</label>
+                        <input type="number" id="withdrawAmount" placeholder="Enter amount" min="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="withdrawBank">Bank Account Number</label>
+                        <input type="text" id="withdrawBank" placeholder="Enter bank account number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="withdrawBank2">Account Holder Name</label>
+                        <input type="text" id="withdrawBank2" placeholder="Enter account holder name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="withdrawBank3">IFSC Code</label>
+                        <input type="text" id="withdrawBank3" placeholder="Enter IFSC code" required>
+                    </div>
+
+                    <button type="submit" class="withdraw-btn">Request Withdrawal</button>
+                </form>
+
+                <div class="withdraw-history">
+                    <h3>Withdrawal History</h3>
+                    <div id="withdrawalHistoryList" class="history-list">
+                        <p class="empty-message">No withdrawals yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Page -->
+        <div id="page-account" class="page">
+            <h2>My Account</h2>
+            <div class="account-container">
+                <div class="account-info">
+                    <div class="info-card">
+                        <label>Email</label>
+                        <p id="accountEmail">-</p>
+                    </div>
+
+                    <div class="info-card">
+                        <label>Account Balance</label>
+                        <p id="accountBalance" class="balance-text">Rs 0</p>
+                    </div>
+
+                    <div class="info-card">
+                        <label>Total Invested</label>
+                        <p id="accountTotalInvested">Rs 0</p>
+                    </div>
+
+                    <div class="info-card">
+                        <label>Total Earnings</label>
+                        <p id="accountTotalEarnings">Rs 0</p>
+                    </div>
+
+                    <div class="info-card">
+                        <label>Join Date</label>
+                        <p id="accountJoinDate">-</p>
+                    </div>
+
+                    <div class="info-card">
+                        <label>Referrals</label>
+                        <p id="accountReferrals">0</p>
+                    </div>
+                </div>
+
+                <div class="account-actions">
+                    <button class="logout-btn" onclick="handleLogout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button class="nav-btn active" onclick="showPage('home')">🏠 Home</button>
+        <button class="nav-btn" onclick="showPage('earnings')">💰 Earnings</button>
+        <button class="nav-btn" onclick="showPage('task')">✓ Task</button>
+        <button class="nav-btn" onclick="showPage('share')">📤 Share</button>
+        <button class="nav-btn" onclick="showPage('withdraw')">💳 Withdraw</button>
+    </nav>
+
+    <!-- Invest Modal -->
+    <div id="investModal" class="modal">
+        <div class="modal-content invest-modal">
+            <span class="close" onclick="closeInvestModal()">&times;</span>
+            <h2>Invest in <span id="investProductName"></span></h2>
+            
+            <div class="invest-form">
+                <div class="form-group">
+                    <label for="investQuantity">Quantity (Units)</label>
+                    <input type="number" id="investQuantity" placeholder="Enter quantity" min="1" value="1">
+                </div>
+
+                <div class="form-group">
+                    <label>Unit Price: <span id="investUnitPrice">Rs 0</span></label>
+                </div>
+
+                <div class="form-group">
+                    <label>Daily Return per Unit: <span id="investDailyReturn">Rs 0</span></label>
+                </div>
+
+                <div class="form-summary">
+                    <p><strong>Total Investment:</strong> Rs <span id="totalInvestment">0</span></p>
+                    <p><strong>Daily Earnings:</strong> Rs <span id="dailyEarnings">0</span></p>
+                </div>
+
+                <button class="invest-confirm-btn" onclick="confirmInvestment()">Confirm Investment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            <h2 id="authTitle">Sign In</h2>
+            
+            <div class="auth-form">
+                <!-- Gmail Login -->
+                <button class="gmail-btn" onclick="handleGmailLogin()">
+                    📧 Sign in with Gmail
+                </button>
+
+                <div class="divider">or</div>
+
+                <!-- Email/Password -->
+                <div id="emailAuthForm">
+                    <div class="form-group">
+                        <label for="authEmail">Email</label>
+                        <input type="email" id="authEmail" placeholder="Enter email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="authPassword">Password</label>
+                        <input type="password" id="authPassword" placeholder="Enter password (min 6 chars)" required>
+                    </div>
+
+                    <button class="auth-btn" onclick="handleEmailAuth()">Login</button>
+                    <button type="button" class="auth-btn secondary" onclick="toggleAuthMode()">Create Account</button>
+                </div>
+
+                <div id="signupForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" placeholder="Enter email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" placeholder="Enter password (min 6 chars)" required>
+                    </div>
+
+                    <button class="auth-btn" onclick="handleSignup()">Create Account</button>
+                    <button type="button" class="auth-btn secondary" onclick="toggleAuthMode()">Back to Login</button>
+                </div>
+
+                <div id="authMessage" class="auth-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+        <p id="successText"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
